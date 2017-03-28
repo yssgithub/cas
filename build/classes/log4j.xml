@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration >
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="&lt;ffcs_log level=%p time=%d{yyyyMMddHHmmss} position=%C:%M:%L &gt;%m&lt;/ffcs_log&gt;%n" />
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="INFO" />
+            <param name="levelMax" value="ERROR" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+    </appender>
+
+    <appender name="LOG_DEBUG"  class="com.ffcs.component.log.ProDailyRollingFileAppender">
+        <param name="File"
+               value="${catalina.base}/logs/cas/debug/" />
+        <param name="DatePattern" value="'cas-'yyyyMMdd" />
+        <param name="MaxFileSize" value="50MB" />
+        <param name="MaxBackupIndex" value="99" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="&lt;ffcs_log level=%p time=%d{yyyyMMddHHmmss} position=%C:%M:%L &gt;%m&lt;/ffsc_log&gt;%n" />
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="DEBUG" />
+            <param name="levelMax" value="ERROR" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+    </appender>
+
+    <appender name="LOG_INFO"
+              class="com.ffcs.component.log.ProDailyRollingFileAppender">
+        <param name="File" value="${catalina.base}/logs/cas/info/" />
+        <param name="DatePattern" value="'cas-'yyyyMMdd" />
+        <param name="MaxFileSize" value="50MB" />
+        <param name="MaxBackupIndex" value="99" />
+        <param name="append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="&lt;ffsc_log level=%p time=%d{yyyyMMddHHmmss} position=%C:%M:%L &gt;%m&lt;/ffsc_log&gt;%n" />
+        </layout>
+
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="INFO" />
+            <param name="levelMax" value="ERROR" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+    </appender>
+
+    <appender name="LOG_WARN"
+              class="com.ffcs.component.log.ProDailyRollingFileAppender">
+        <param name="File" value="${catalina.base}/logs/cas/warn/" />
+        <param name="DatePattern" value="'cas-'yyyyMMdd" />
+        <param name="MaxFileSize" value="50MB" />
+        <param name="MaxBackupIndex" value="99" />
+        <param name="append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="&lt;ffsc_log level=%p time=%d{yyyyMMddHHmmss} position=%C:%M:%L &gt;%m&lt;/ffsc_log&gt;%n" />
+        </layout>
+
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="WARN" />
+            <param name="levelMax" value="ERROR" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+    </appender>
+
+    <appender name="LOG_ERROR"
+              class="com.ffcs.component.log.ProDailyRollingFileAppender">
+        <param name="File"
+               value="${catalina.base}/logs/cas/error/" />
+        <param name="DatePattern" value="'cas-'yyyyMMdd" />
+        <param name="MaxFileSize" value="50MB" />
+        <param name="MaxBackupIndex" value="99" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="&lt;ffsc_log level=%p time=%d{yyyyMMddHHmmss} position=%C:%M:%L &gt;%m&lt;/ffsc_log&gt;%n" />
+        </layout>
+
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="ERROR" />
+            <param name="levelMax" value="ERROR" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+    </appender>
+
+    <root>
+        <level value="DEBUG" />
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="LOG_DEBUG" />
+        <appender-ref ref="LOG_INFO" />
+        <appender-ref ref="LOG_WARN" />
+        <appender-ref ref="LOG_ERROR" />
+    </root>
+
+
+
+</log4j:configuration>
