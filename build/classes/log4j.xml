@@ -96,6 +96,4 @@
         <appender-ref ref="LOG_ERROR" />
     </root>
 
-
-
 </log4j:configuration>
