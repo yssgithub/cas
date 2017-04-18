@@ -56,13 +56,15 @@ public final class RsCasDaoAuthenticationHandler extends AbstractUsernamePasswor
         String md5pwd = MyPasswordEncoder.getPassword(username, password);
        
         log.info("开始CAS认证方式 RsCasDaoAuthenticationHandler......");  
-        log.info("userName:[" + username+"],password:[" + password+"]");  
-        //log.info("md5pwd:[" + md5pwd+"]");  
+        log.info("用户登录:userName[" + username+"],password[" + password+"]");  
+        log.info("用户登录:md5pwd:[" + md5pwd+"]");  
        
         // 连接数据库  
         Connection conn = null;  
         PreparedStatement ps = null;  
         ResultSet rs = null;  
+        //默认表示不通过
+        boolean flag = false;
         try{    
             conn = ConnDBUtil.getConnection();  
             //String sql = "select count(1)  from t_sys_user_info where  user_account='" + username + "' and password='" + password + "'";  
@@ -70,20 +72,15 @@ public final class RsCasDaoAuthenticationHandler extends AbstractUsernamePasswor
             String sql = "select password  from t_sys_user_info where  user_account='" + username + "'";  
             ps = conn.prepareStatement(sql);  
             rs = ps.executeQuery();  
-            //默认表示不通过
-            boolean flag = false;
             //用while防止重复的username(注册的要判重)
             while (rs != null && rs.next()) {  
                 String dbPassword = rs.getString(1);  
+                log.info("查询数据库:dbPassword:[" + dbPassword+"]");  
                 if (md5pwd.equals(dbPassword)) { 
                 	//存在相当，则通过
                     flag = true;
                 }  
             }  
-            if(!flag){
-            	//如果不存在，则登录失败  
-            	throw new FailedLoginException("Password does not match value on record.");  
-            }
         } catch (Exception e) {  
         	log.error("操作数据库异常："+e.getMessage());
         } finally {  
@@ -101,6 +98,11 @@ public final class RsCasDaoAuthenticationHandler extends AbstractUsernamePasswor
                 e.printStackTrace();  
             }  
         } 
+        if(!flag){
+        	log.info("登录失败:[用户登录使用的账号或密码无法得到验证]");  
+        	//如果不存在，则登录失败  
+        	throw new FailedLoginException("Password does not match value on record.");  
+        }
         return createHandlerResult(credential, new SimplePrincipal(username), null);
 	}  
        

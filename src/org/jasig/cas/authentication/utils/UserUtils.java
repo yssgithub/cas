@@ -124,8 +124,12 @@ public class UserUtils {
         try {  
             conn = ConnDBUtil.getConnection(); 
             
+        				
+    		
+            
             String sql = "insert into `t_sys_user_info` (`user_name`,`user_account`,`password`,`digitalid`,`email`,`reg_time`,`area_code`) "+
-            			 " values('"+name+"','"+account+"','"+password+"',"+digitalID+",'"+email+"',STR_TO_DATE('"+regTime+"','%Y-%m-%d %H:%i:%s'),"+areaCode+")";  
+            			 " values('"+name+"','"+account+"','"+password+"',"+((digitalID==null||"".equals(digitalID))?"NULL":digitalID)+",'"+email+"',STR_TO_DATE('"+regTime+"','%Y-%m-%d %H:%i:%s'),"+((areaCode==null||"".equals(areaCode))?"NULL":areaCode)+")";  
+            LOGGER.info("adduser:"+sql);
             ps = conn.prepareStatement(sql);  
             count = ps.executeUpdate();  
         } catch (Exception e) {  

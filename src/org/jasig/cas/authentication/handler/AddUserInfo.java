@@ -41,8 +41,8 @@ public class AddUserInfo extends HttpServlet {
 		response.setHeader("content-type", "text/json;charset=UTF-8");
 		response.setContentType("text/json; charset=UTF-8");  
 		
-		//System.out.println(name+","+account+","+password+","+email);
-		if(name==null || account==null || password==null || email==null){
+		System.out.println(name+","+account+","+password+","+email);
+		if(name==null || account==null || password==null || email==null || "".equals(name)||"".equals(account)||"".equals(password)||"".equals(email)){
 			logger.error("参数异常[name,account,password,email]");
 			content = "{\"success\":false,\"errorDesc\":\"参数异常\"}";
 			response.getOutputStream().write(content.getBytes("UTF-8"));

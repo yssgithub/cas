@@ -42,7 +42,7 @@ public class CheckUsernameExists extends HttpServlet {
 		flag = UserUtils.checkUsernameExists(username);
 		content = "{\"success\":true, \"isexist\":false}";
 		if(flag){
-			content = "{\"success\":false,\"errorDesc\":\"数据库中已存在该用户\"}";
+			content = "{\"success\":true, \"isexist\":true,\"errorDesc\":\"数据库中已存在该用户\"}";
 		}
 		response.getOutputStream().write(content.getBytes("UTF-8"));
 	}

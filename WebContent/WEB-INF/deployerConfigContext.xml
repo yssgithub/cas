@@ -64,9 +64,9 @@
                 <!-- 方法一  密码加密时不需要账号 -->
                 <!-- <entry key-ref="primaryAuthenticationHandler" value-ref="primaryPrincipalResolver" /> -->
                 <!-- 方法二  密码加密时需要账号作为盐值 -->
-                <entry key-ref="selfPrimaryAuthenticationHandler1" value-ref="primaryPrincipalResolver" />
+                <!-- <entry key-ref="selfPrimaryAuthenticationHandler1" value-ref="primaryPrincipalResolver" /> -->
                 <!-- 方法三  密码加密时需要账号作为盐值-->
-                <!-- <entry key-ref="selfPrimaryAuthenticationHandler2" value-ref="primaryPrincipalResolver" /> -->
+                <entry key-ref="selfPrimaryAuthenticationHandler2" value-ref="primaryPrincipalResolver" />
             </map>
         </constructor-arg>
 
@@ -250,16 +250,16 @@
     
     <!-- datasource -->
     <!-- 本地MySql -->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+    <!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
       p:driverClass="com.mysql.jdbc.Driver"
       p:jdbcUrl="jdbc:mysql://localhost:3306/cas?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
       p:user="root"
       p:password="12345678" 
-      />
+      /> -->
     <!-- 61MySql -->
-    <!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
       p:driverClass="com.mysql.jdbc.Driver"
-      p:jdbcUrl="jdbc:mysql://61.154.164.33:3309/cas?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
+      p:jdbcUrl="jdbc:mysql://127.0.0.1:3306/cas?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
       p:user="root"
       p:password="yyzc123$%^"
 
@@ -271,7 +271,7 @@
       p:acquireRetryDelay="1000"
       p:acquireRetryAttempts="60"
       p:breakAfterAcquireFailure="false" 
-      /> -->
+      />
 
 	<!-- 自定义属性匹配 -->
     <bean id="selfAttributeRepository"  

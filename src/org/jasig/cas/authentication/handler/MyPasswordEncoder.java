@@ -51,7 +51,7 @@ public class MyPasswordEncoder implements PasswordEncoder {
 	{
 		String pwd = DigestUtils.md5Hex(password);
 		String userNameMD5 = DigestUtils.md5Hex(username);
-		return DigestUtils.md5Hex(userNameMD5.substring(7, 8) + pwd);
+		return DigestUtils.md5Hex(userNameMD5.substring(7, 15) + pwd);
 	}
 	
 	public static void main(String[] args) {
@@ -59,7 +59,8 @@ public class MyPasswordEncoder implements PasswordEncoder {
 //		System.out.println("password[1]:"+new MyPasswordEncoder().encode("1"));
 //		System.out.println("password[2]:"+new MyPasswordEncoder().encode("2"));
 //		System.out.println("password[ffcs]:"+new MyPasswordEncoder().encode("ffcs"));
-		System.out.println(MyPasswordEncoder.getPassword("ffcs", "ffcsvas"));
+		System.out.println(MyPasswordEncoder.getPassword("admin", "1"));
+		System.out.println(MyPasswordEncoder.getPassword("ffcs", "1"));
 	}
 
 }

@@ -11,11 +11,14 @@ import org.jasig.cas.authentication.HandlerResult;
 import org.jasig.cas.authentication.PreventedException;
 import org.jasig.cas.authentication.UsernamePasswordCredential;
 import org.jasig.cas.authentication.principal.SimplePrincipal;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 
 public class MySecondAuthenticationHandler extends AbstractJdbcUsernamePasswordAuthenticationHandler {
 
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	// xml配置文件中指定datasource，
 	// 并传入sql
 	@NotNull
