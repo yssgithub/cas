@@ -250,13 +250,17 @@
     
     <!-- datasource -->
     <!-- 本地MySql -->
-    <!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
       p:driverClass="com.mysql.jdbc.Driver"
       p:jdbcUrl="jdbc:mysql://localhost:3306/cas?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
       p:user="root"
       p:password="12345678" 
-      /> -->
+      />
+      
+   
+    
     <!-- 61MySql -->
+    <!-- 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
       p:driverClass="com.mysql.jdbc.Driver"
       p:jdbcUrl="jdbc:mysql://127.0.0.1:3306/cas?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
@@ -272,7 +276,19 @@
       p:acquireRetryAttempts="60"
       p:breakAfterAcquireFailure="false" 
       />
-
+	 -->
+	 
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+		<ref local="dataSource" />
+		</property>
+	</bean>
+    <bean id="userUtils" class="org.jasig.cas.authentication.utils.UserUtils">
+    	<property name="jdbcTemplate">
+    		<ref bean="jdbcTemplate"/>
+    	</property>
+    </bean>
+	 
 	<!-- 自定义属性匹配 -->
     <bean id="selfAttributeRepository"  
           class="org.jasig.services.persondir.support.jdbc.SingleRowJdbcPersonAttributeDao">  

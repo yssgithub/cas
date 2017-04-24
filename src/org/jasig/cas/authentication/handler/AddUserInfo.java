@@ -27,7 +27,7 @@ public class AddUserInfo extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.info("~~~ 开始 ： 新增单个用户信息 ~~~");
+		logger.info("~~~ 开始 ： 新增单个用户信息   ~~~");
 		String name = request.getParameter("name"); 
 		String account = request.getParameter("account"); 
 		String password = request.getParameter("password"); 
@@ -59,12 +59,12 @@ public class AddUserInfo extends HttpServlet {
 			content = "{\"success\":true}";
 			logger.info("新增用户信息成功");
 		}else{
-			content = "{\"success\":false,\"errorDesc\":\"无权限执行该操作\"}";
+			content = "{\"success\":false,\"errorDesc\":\"新增用户信息失败\"}";
 			logger.info("新增用户信息失败");
 		}
 		response.getOutputStream().write(content.getBytes("UTF-8"));
 		
-		logger.info("~~~ 结束 ： 新增单个用户信息 ~~~");
+		logger.info("~~~ 结束 ： 新增单个用户信息   ~~~");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

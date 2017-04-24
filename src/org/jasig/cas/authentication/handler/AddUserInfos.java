@@ -1,6 +1,8 @@
 package org.jasig.cas.authentication.handler;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +37,8 @@ public class AddUserInfos extends HttpServlet {
 					"email":"电子邮箱","areaCode":"归属地","regTime":"注册时间"},...]}
 		 */
 		String users = request.getParameter("users"); 
+		logger.info("users:"+users);
+		
 		
 		String content = "";
 		response.setCharacterEncoding("UTF-8");
@@ -60,7 +64,7 @@ public class AddUserInfos extends HttpServlet {
 			count += UserUtils.addUserInfoObj(userInfo);
 		}
 		if(count==userInfos.size()){
-			content = "{\"success\":true}";
+			content = "{\"success\":true, \"desc\":\"批量新增用户成功\"}";
 		}else if(count>0 && count<userInfos.size()){
 			content = "{\"success\":false,\"errorDesc\":\"部分添加失败\"}";
 		}else{
