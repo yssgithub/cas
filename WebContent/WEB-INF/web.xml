@@ -190,10 +190,18 @@
   	<servlet-name>CheckEmailExists</servlet-name>
   	<servlet-class>org.jasig.cas.authentication.handler.CheckEmailExists</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ModifyUserInfoServlet</servlet-name>
+  	<servlet-class>org.jasig.cas.authentication.handler.ModifyUserInfoServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>GetUserInfoServlet</servlet-name>
+  	<servlet-class>org.jasig.cas.authentication.handler.GetUserInfoServlet</servlet-class>
+  </servlet>
  
   <servlet-mapping>
   	<servlet-name>ModifyPasswordServlet</servlet-name>
-  	<url-pattern>/modifysuba.do</url-pattern>
+  	<url-pattern>/modifypwd.do</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>CheckUsernameExists</servlet-name>
@@ -214,6 +222,14 @@
   <servlet-mapping>
   	<servlet-name>CheckEmailExists</servlet-name>
   	<url-pattern>/Iemail.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ModifyUserInfoServlet</servlet-name>
+  	<url-pattern>/modifysuba.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetUserInfoServlet</servlet-name>
+  	<url-pattern>/quba.do</url-pattern>
   </servlet-mapping>
 
   <session-config>

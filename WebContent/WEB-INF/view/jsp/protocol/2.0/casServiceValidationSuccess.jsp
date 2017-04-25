@@ -25,16 +25,15 @@
 	<cas:authenticationSuccess>
 		<cas:user>${fn:escapeXml(assertion.primaryAuthentication.principal.id)}</cas:user>
 		
-		<!-- 新增额外信息(开始) -->
-		<c:iftest="${fn:length(assertion.chainedAuthentications[fn:length(assertion.chainedAuthentications)-1].principal.attributes)> 0}">
+		<%-- 新增额外信息(开始) --%>
+		<%-- <c:if test="${fn:length(assertion.chainedAuthentications[fn:length(assertion.chainedAuthentications)-1].principal.attributes)> 0}">
 		    <cas:attributes>
-		        <c:forEachvar="attr"items="${assertion.chainedAuthentications[fn:length(assertion.chainedAuthentications)-1].principal.attributes}">  
-				<!--注意此行的正确写法，网上资料基本都是错误的-->           
+		        <c:forEach var="attr" items="${assertion.chainedAuthentications[fn:length(assertion.chainedAuthentications)-1].principal.attributes}">  
 				<cas:${fn:escapeXml(attr.key)}>${fn:escapeXml(attr.value)}</cas:${fn:escapeXml(attr.key)}>
 				</c:forEach>
 			</cas:attributes>
-		</c:if>
-		<!-- 新增额外信息(结束) -->
+		</c:if> --%>
+		<%-- 新增额外信息(结束) --%>
 		
         <c:if test="${not empty pgtIou}">
         		<cas:proxyGrantingTicket>${pgtIou}</cas:proxyGrantingTicket>

@@ -19,7 +19,7 @@ public class ModifyPasswordServlet extends HttpServlet {
 	
 	private Logger logger = LoggerFactory.getLogger(ModifyPasswordServlet.class);
 
-	private static final long serialVersionUID = 10005L;
+	private static final long serialVersionUID = 10006L;
        
     public ModifyPasswordServlet() {
         super();

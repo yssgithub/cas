@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.jasig.cas.authentication.entry.UserInfo;
 import org.jasig.cas.authentication.handler.MyPasswordEncoder;
@@ -15,6 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -77,6 +80,28 @@ public class UserUtils {
         } catch (Exception e) {  
         	LOGGER.error("系统异常："+e.getMessage());
         }  
+		return flag;
+	}
+	/*
+	 * 验证用户，携带密码
+	 * 
+	 */
+	public static boolean checkUsernameWithPWDExists(String account, String password) {
+		// 不存在
+		boolean flag = false;
+		try {  
+			String sql = "select count(1) as count  from t_sys_user_info where  user_account='" + account + "' and password='" + password + "'";  
+			//int count = jdbcTemplate.queryForInt(sql, username);
+			Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+			if(count >0){
+				flag = true;//存在
+				LOGGER.info("用户验证结果："+account+" 用户已存在于数据库");
+			}else{
+				LOGGER.info("用户验证结果："+account+" 用户不存在于数据库");
+			}
+		} catch (Exception e) {  
+			LOGGER.error("系统异常："+e.getMessage());
+		}  
 		return flag;
 	}
 	
@@ -188,8 +213,54 @@ public class UserUtils {
             	LOGGER.info("邮箱验证结果："+username+" 用户的邮箱不存在于数据库");
             }
         } catch (Exception e) {  
-        	LOGGER.error("操作数据库异常："+e.getMessage());
+        	LOGGER.error("系统异常："+e.getMessage());
         }  
 		return flag;
+	}
+	
+	public static int modifyUserInfo(String name, String account, String oldPwd, String password, String digitalID, String email, String areaCode){
+		int count=0;
+		try {
+			StringBuffer sql = new StringBuffer("update t_sys_user_info set ");
+			StringBuffer updateColums = new StringBuffer();
+			if(name!=null && !"".equals(name)){
+				updateColums.append(" and user_name='"+name+"'");
+			}
+			if(password!=null && !"".equals(password)){
+				updateColums.append(" and password='"+password+"'");
+			}
+			if(digitalID!=null && !"".equals(digitalID)){
+				updateColums.append(" and digitalid='"+digitalID+"'");
+			}
+			if(areaCode!=null && !"".equals(areaCode)){
+				updateColums.append(" adn area_code='"+areaCode+"'");
+			}
+			//邮箱ABC@ffcs.cn
+			if(email!=null && !"".equals(email) && email.indexOf("@")>0 && email.indexOf(".")>0 && email.lastIndexOf(".")>email.indexOf("@")){
+				updateColums.append(" and email='"+email+"'");
+			}
+			sql.append(updateColums.substring(4, updateColums.length()))
+			   .append(" where user_account='"+account+"'");
+			
+			count = jdbcTemplate.update(sql.toString());
+			
+		} catch (Exception e) {
+			LOGGER.error("系统异常："+e.getMessage());
+		}
+		return count;
+	}
+	
+	public static UserInfo getUserInfo(String account){
+		UserInfo userInfo = null;
+		try {
+			String sql = " select user_account as account,area_code as areaCode,digitalid as digitalID,email,"+
+						 " user_name as name,password,reg_time as regTime,id "+
+						 " from t_sys_user_info where user_account='"+account+"'";
+			RowMapper<UserInfo> rm =  ParameterizedBeanPropertyRowMapper.newInstance(UserInfo.class);
+			userInfo = jdbcTemplate.queryForObject(sql, rm);
+		} catch (Exception e) {
+			LOGGER.error("系统异常："+e.getMessage());
+		}
+		return userInfo;
 	}
 }
