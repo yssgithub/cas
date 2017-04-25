@@ -8,14 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @ClassName: ConfigUtil
- * @Description: 配置文件解析工具类
- * @Copyright: Copyright (c) 2010 FFCS All Rights Reserved
- * @Company 北京福富软件福州分公司
- * @author 屈盛知
- * @date Aug 5, 2013 4:13:32 PM
- * @version 1.00.00
- * @history:
+ * 
+ * Title: ConfigUtil
+ * Description: 配置文件解析工具类
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午7:06:40
  */
 public class ConfigUtil {
 	private final static Logger log = LoggerFactory.getLogger(ConfigUtil.class);

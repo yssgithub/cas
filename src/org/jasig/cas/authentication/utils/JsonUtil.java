@@ -18,6 +18,16 @@ import net.sf.json.JSONObject;
  * @since 2017-03-23
  * @company ffcs
  */
+/**
+ * 
+ * Title: JsonUtil
+ * Description: Json <---> Object 转换工具类
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午7:08:14
+ */
 public class JsonUtil {
 
 	/* 

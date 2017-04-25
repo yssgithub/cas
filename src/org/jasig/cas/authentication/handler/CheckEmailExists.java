@@ -15,8 +15,14 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /**
- * Servlet implementation class CheckUsername
- * 注册时验证用户名唯一
+ * 
+ * Title: CheckEmailExists
+ * Description: 注册时验证用户名唯一
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午6:56:56
  */
 public class CheckEmailExists extends HttpServlet {
 	private Logger logger = LoggerFactory.getLogger(CheckEmailExists.class);

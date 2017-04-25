@@ -28,11 +28,13 @@ import org.slf4j.LoggerFactory;
        
 /**
  * 
- * @ClassName: RsCasDaoAuthenticationHandler 
- * @Description: 密码加密工具类 ，通过java代码中固定连接数据库及实现认证
- * @author youss 
- * @date 2017年3月9日 下午18:25:29 
- *
+ * Title: RsCasDaoAuthenticationHandler
+ * Description: 密码加密工具类 ，通过java代码中固定连接数据库及实现认证(不推荐)
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午7:05:01
  */
 public final class RsCasDaoAuthenticationHandler extends AbstractUsernamePasswordAuthenticationHandler {  
        

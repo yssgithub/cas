@@ -4,6 +4,16 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 
+ * Title: MySecondPasswordEncoder
+ * Description: 第二种自定义密码加密工具类
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午7:04:04
+ */
 public class MySecondPasswordEncoder implements PasswordEncoder {
 	
 	private final Logger log = LoggerFactory.getLogger(getClass());

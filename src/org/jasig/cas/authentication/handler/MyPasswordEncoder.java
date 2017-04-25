@@ -6,11 +6,13 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * 
-* @ClassName: MyPasswordEncoder 
-* @Description: 密码加密工具类 
-* @author youss 
-* @date 2017年3月5日 下午12:17:37 
-*
+ * Title: MyPasswordEncoder
+ * Description: 密码加密工具类 
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午6:59:50
  */
 public class MyPasswordEncoder implements PasswordEncoder {
 	

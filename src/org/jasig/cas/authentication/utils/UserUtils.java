@@ -1,20 +1,11 @@
 package org.jasig.cas.authentication.utils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.jasig.cas.authentication.entry.UserInfo;
 import org.jasig.cas.authentication.handler.MyPasswordEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
@@ -23,9 +14,14 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /**
- * 用户信息操作类
- * @author Administrator
- *
+ * 
+ * Title: UserUtils
+ * Description: 用户信息相关操作工具类
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午7:09:11
  */
 public class UserUtils {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserUtils.class);

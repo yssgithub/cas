@@ -12,8 +12,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Servlet implementation class ModifyPasswordServlet
- * 修改用户密码
+ * 
+ * Title: ModifyPasswordServlet
+ * Description: 修改用户密码
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午6:57:50
  */
 public class ModifyPasswordServlet extends HttpServlet {
 	

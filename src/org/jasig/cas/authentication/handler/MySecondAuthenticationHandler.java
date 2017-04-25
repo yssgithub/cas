@@ -16,6 +16,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 
+/**
+ * 
+ * Title: MySecondAuthenticationHandler
+ * Description: 第二种验证接口
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午7:02:45
+ */
 public class MySecondAuthenticationHandler extends AbstractJdbcUsernamePasswordAuthenticationHandler {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());

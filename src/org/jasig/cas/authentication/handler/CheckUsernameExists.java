@@ -12,8 +12,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Servlet implementation class CheckUsername
- * 注册时验证用户名唯一
+ * 
+ * Title: CheckUsernameExists
+ * Description: 注册时验证用户名唯一
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午6:57:17
  */
 public class CheckUsernameExists extends HttpServlet {
 	private Logger logger = LoggerFactory.getLogger(CheckUsernameExists.class);

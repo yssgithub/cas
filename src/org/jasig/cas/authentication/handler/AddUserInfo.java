@@ -13,9 +13,16 @@ import org.jasig.cas.authentication.utils.UserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 /**
- * Servlet implementation class AddUserInfo
- * 单个用户注册
+ * 
+ * Title: AddUserInfo
+ * Description: 单个用户注册
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午6:56:07
  */
 public class AddUserInfo extends HttpServlet {
 	private Logger logger = LoggerFactory.getLogger(AddUserInfo.class);

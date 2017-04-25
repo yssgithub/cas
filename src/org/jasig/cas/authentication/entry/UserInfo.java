@@ -1,5 +1,15 @@
 package org.jasig.cas.authentication.entry;
 
+/**
+ * 
+ * Title: UserInfo
+ * Description: 
+ * @Copyright: Copyright (c) 2017 FFCS All Rights Reserved 
+ * @Company: 北京福富软件有限公司  
+ * @author youss
+ * @date 2017年4月25日
+ * @time 下午6:55:47
+ */
 public class UserInfo {
 
 	private int id;//自增主键
