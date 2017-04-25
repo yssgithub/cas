@@ -35,7 +35,7 @@ public class ModifyPasswordServlet extends HttpServlet {
 		response.setContentType("text/json; charset=UTF-8");
 		String content = "";
 		
-		if(username==null || oldPwd==null || newPwd==null || "".equals(username) || "".equals(oldPwd) || "".equals(oldPwd)){
+		if(username==null || oldPwd==null || newPwd==null || "".equals(username) || "".equals(oldPwd) || "".equals(newPwd)){
 			logger.error("参数异常[username]");
 			content = "{\"success\":false,\"errorDesc\":\"传递参数异常\"}";
 			response.getOutputStream().write(content.getBytes("UTF-8"));
@@ -44,7 +44,7 @@ public class ModifyPasswordServlet extends HttpServlet {
 		
 		int count = UserUtils.modifyPwd(username, oldPwd, newPwd);
 		
-		content = "{\"success\":true}";
+		content = "{\"success\":true,\"desc\":\"密码修改成功\"}";
 		if(count==0){
 			content = "{\"success\":false,\"errorDesc\":\"无权限执行该操作\"}";
 		}
