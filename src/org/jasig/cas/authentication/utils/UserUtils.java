@@ -127,8 +127,8 @@ public class UserUtils {
 		try {  
 			
 			String sql = "insert into `t_sys_user_info` (`user_name`,`user_account`,`password`,`digitalid`,`email`,`reg_time`,`area_code`) "+
-					" values('"+userInfo.getName()+"','"+userInfo.getAccount()+"','"+userInfo.getPassword()+"',"+((userInfo.getDigitalID()==null||"".equals(userInfo.getDigitalID()))?"NULL":userInfo.getDigitalID())
-					+userInfo.getEmail()+"',STR_TO_DATE('"+userInfo.getRegTime()+"','%Y-%m-%d %H:%i:%s')," + ((userInfo.getAreaCode()==null||"".equals(userInfo.getAreaCode()))?"NULL":userInfo.getAreaCode()) +")";  
+					" values('"+userInfo.getName()+"','"+userInfo.getAccount()+"','"+userInfo.getPassword()+"',"+((userInfo.getDigitalID()==null||"".equals(userInfo.getDigitalID()))?"NULL":userInfo.getDigitalID())+","
+					+"'"+userInfo.getEmail()+"',STR_TO_DATE('"+userInfo.getRegTime()+"','%Y-%m-%d %H:%i:%s')," + ((userInfo.getAreaCode()==null||"".equals(userInfo.getAreaCode()))?"NULL":userInfo.getAreaCode()) +")";  
 			count = jdbcTemplate.update(sql);  
 		} catch (Exception e) {  
 			LOGGER.error("系统异常："+e.getMessage());
@@ -220,22 +220,22 @@ public class UserUtils {
 			StringBuffer sql = new StringBuffer("update t_sys_user_info set ");
 			StringBuffer updateColums = new StringBuffer();
 			if(name!=null && !"".equals(name)){
-				updateColums.append(" and user_name='"+name+"'");
+				updateColums.append(",  user_name='"+name+"'");
 			}
 			if(password!=null && !"".equals(password)){
-				updateColums.append(" and password='"+password+"'");
+				updateColums.append(",  password='"+password+"'");
 			}
 			if(digitalID!=null && !"".equals(digitalID)){
-				updateColums.append(" and digitalid='"+digitalID+"'");
+				updateColums.append(",  digitalid='"+digitalID+"'");
 			}
 			if(areaCode!=null && !"".equals(areaCode)){
-				updateColums.append(" adn area_code='"+areaCode+"'");
+				updateColums.append(",  area_code='"+areaCode+"'");
 			}
 			//邮箱ABC@ffcs.cn
 			if(email!=null && !"".equals(email) && email.indexOf("@")>0 && email.indexOf(".")>0 && email.lastIndexOf(".")>email.indexOf("@")){
-				updateColums.append(" and email='"+email+"'");
+				updateColums.append(",  email='"+email+"'");
 			}
-			sql.append(updateColums.substring(4, updateColums.length()))
+			sql.append(updateColums.substring(2, updateColums.length()))
 			   .append(" where user_account='"+account+"'");
 			
 			count = jdbcTemplate.update(sql.toString());

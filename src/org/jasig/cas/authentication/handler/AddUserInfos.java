@@ -62,6 +62,18 @@ public class AddUserInfos extends HttpServlet {
 			return;
 		}
 		
+		//只要有一个用户不符合唯一性，就一个都不添加
+		for (Object obj : userInfos) {
+			UserInfo userInfo = (UserInfo)obj;
+			boolean accountExists = UserUtils.checkUsernameExists(userInfo.getAccount());
+			if(accountExists){
+				content = "{\"success\":false, \"desc\":\"批量新增用户失败,数据中的 "+userInfo.getAccount()+" 与数据库中已有账号冲突了\"}";
+				logger.error("批量新增用户失败,数据中的 "+userInfo.getAccount()+" 与数据库中已有账号冲突了");
+				response.getOutputStream().write(content.getBytes("UTF-8"));
+				return;
+			}
+		}
+		
 		for (Object obj : userInfos) {
 			UserInfo userInfo = (UserInfo)obj;
 			if(userInfo.getRegTime()==null || "".equals(userInfo.getRegTime())){
@@ -71,8 +83,9 @@ public class AddUserInfos extends HttpServlet {
 		}
 		if(count==userInfos.size()){
 			content = "{\"success\":true, \"desc\":\"批量新增用户成功\"}";
+			logger.error("批量新增用户成功,新增了 "+count+"个用户");
 		}else if(count>0 && count<userInfos.size()){
-			content = "{\"success\":false,\"errorDesc\":\"部分添加失败\"}";
+			content = "{\"success\":false,\"errorDesc\":\"部分添加失败,请联系系统管理员\"}";
 		}else{
 			content = "{\"success\":false,\"errorDesc\":\"无权限执行该操作\"}";
 		}

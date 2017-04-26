@@ -48,7 +48,7 @@ public class ModifyUserInfoServlet extends HttpServlet {
 		boolean accountExists = UserUtils.checkUsernameWithPWDExists(account, oldPwd);
 		if(!accountExists){
 			logger.error("参数异常[account/oldPwd]:"+account+"/"+oldPwd);
-			content = "{\"success\":false,\"errorDesc\":\"传递参数异常\"}";
+			content = "{\"success\":false,\"errorDesc\":\"用户名或密码传递参数异常\"}";
 			response.getOutputStream().write(content.getBytes("UTF-8"));
 			return;
 		}
